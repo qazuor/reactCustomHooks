@@ -1,5 +1,5 @@
 {
-  "name": "Qazuor React Custom Hooks",
+  "name": "qazuor-react-hooks",
   "version": "1.0.0",
   "description": "Paquete de hooks personalizados para React",
   "main": "dist/index.cjs.js",
