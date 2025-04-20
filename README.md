@@ -2,14 +2,14 @@
 
 <div align="center">
   <img src="logo.webp" alt="React Custom Hooks Library Logo" width="150" />
-</div>
 
-<div align="center" style="margin-top:15px">
-  [![npm version](https://img.shields.io/npm/v/qazuor-react-hooks.svg)](https://www.npmjs.com/package/qazuor-react-hooks)
-  [![npm downloads](https://img.shields.io/npm/dm/qazuor-react-hooks.svg)](https://www.npmjs.com/package/qazuor-react-hooks)
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-  [![TypeScript](https://img.shields.io/badge/TypeScript-4.9+-blue.svg)](https://www.typescriptlang.org/)
-  [![React](https://img.shields.io/badge/React-18.2+-blue.svg)](https://reactjs.org/)
+  <div style="margin-top: 25px; margin-bottom: 25px">
+    <a href="https://www.npmjs.com/package/qazuor-react-hooks"><img src="https://img.shields.io/npm/v/qazuor-react-hooks.svg" alt="npm version" /></a>
+    <a href="https://www.npmjs.com/package/qazuor-react-hooks"><img src="https://img.shields.io/npm/dm/qazuor-react-hooks.svg" alt="npm downloads" /></a>
+    <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
+    <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-4.9+-blue.svg" alt="TypeScript" /></a>
+    <a href="https://reactjs.org/"><img src="https://img.shields.io/badge/React-18.2+-blue.svg" alt="React" /></a>
+  </div>
 </div>
 
 A collection of high-quality, fully tested React hooks for common use cases. Written in TypeScript with comprehensive documentation and examples.
