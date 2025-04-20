@@ -145,13 +145,9 @@ describe('useWindowWidth', () => {
 
     it('should cleanup event listeners on unmount', () => {
         const hook = renderHook(() => useWindowWidth({ onChange }));
-
         const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
-
         hook.unmount();
-
         expect(removeEventListenerSpy).toHaveBeenCalledWith('resize', expect.any(Function));
-
         removeEventListenerSpy.mockRestore();
     });
 
