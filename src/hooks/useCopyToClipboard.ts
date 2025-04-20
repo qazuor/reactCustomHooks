@@ -1,4 +1,14 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+interface CopyToClipboardState {
+    copied: boolean;
+    error: Error | null;
+}
+
+interface UseCopyToClipboardReturn extends CopyToClipboardState {
+    copy: (text: string) => Promise<void>;
+    reset: () => void;
+}
 
 /**
  * useCopyToClipboard
@@ -6,14 +16,11 @@ import { useCallback, useState } from 'react';
  * @description Provides a function to copy text to the user's clipboard. It returns
  * a status indicating whether the copy operation succeeded, and any error if it failed.
  *
- * @returns {{
- *   copy: (text: string) => Promise<void>,
- *   copied: boolean,
- *   error: Error | null
- * }} - An object containing:
+ * @returns {UseCopyToClipboardReturn} - An object containing:
  *  - `copy`: A function that attempts to write `text` to the clipboard.
  *  - `copied`: A boolean that is `true` if the last copy attempt was successful.
  *  - `error`: An Error object if the last attempt failed, or `null`.
+ *  - `reset`: A function to reset the copied and error states.
  *
  * @example
  * ```ts
@@ -26,20 +33,47 @@ import { useCallback, useState } from 'react';
  * }
  * ```
  */
-export function useCopyToClipboard() {
-    const [copied, setCopied] = useState(false);
-    const [error, setError] = useState<Error | null>(null);
+export function useCopyToClipboard(): UseCopyToClipboardReturn {
+    const [state, setState] = useState<CopyToClipboardState>({
+        copied: false,
+        error: null
+    });
+
+    const timeoutRef = useRef<number | null>(null);
 
     const copy = useCallback(async (text: string) => {
         try {
+            if (timeoutRef.current) {
+                window.clearTimeout(timeoutRef.current);
+            }
+
             await navigator.clipboard.writeText(text);
-            setCopied(true);
-            setError(null);
+            setState({ copied: true, error: null });
+
+            // Auto-reset after 2 seconds
+            timeoutRef.current = window.setTimeout(() => {
+                setState((prev) => ({ ...prev, copied: false }));
+            }, 2000);
         } catch (err) {
-            setError(err as Error);
-            setCopied(false);
+            setState({ copied: false, error: err as Error });
         }
     }, []);
 
-    return { copy, copied, error };
+    const reset = useCallback(() => {
+        if (timeoutRef.current) {
+            window.clearTimeout(timeoutRef.current);
+        }
+        setState({ copied: false, error: null });
+    }, []);
+
+    // Cleanup timeout on unmount
+    useEffect(() => {
+        return () => {
+            if (timeoutRef.current) {
+                window.clearTimeout(timeoutRef.current);
+            }
+        };
+    }, []);
+
+    return { copy, reset, ...state };
 }
