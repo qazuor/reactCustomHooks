@@ -1,9 +1,14 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface Size {
     width: number;
     height: number;
 }
+
+type ObserverRef = {
+    observer: ResizeObserver | null;
+    element: HTMLDivElement | null;
+};
 
 /**
  * useMeasure
@@ -26,18 +31,39 @@ interface Size {
  */
 export function useMeasure() {
     const [size, setSize] = useState<Size>({ width: 0, height: 0 });
+    const observerRef = useRef<ObserverRef>({ observer: null, element: null });
 
     const ref = useCallback((node: HTMLDivElement | null) => {
         if (!node) return;
+
+        // Clean up previous observer if it exists
+        if (observerRef.current.observer) {
+            observerRef.current.observer.disconnect();
+        }
+
+        // Create new observer
         const observer = new ResizeObserver(([entry]) => {
             setSize({
                 width: entry.contentRect.width,
                 height: entry.contentRect.height
             });
         });
+
+        // Store references
+        observerRef.current = { observer, element: node };
+
         observer.observe(node);
 
         return () => observer.disconnect();
+    }, []);
+
+    // Cleanup on unmount
+    useEffect(() => {
+        return () => {
+            if (observerRef.current.observer) {
+                observerRef.current.observer.disconnect();
+            }
+        };
     }, []);
 
     return { ref, size };
