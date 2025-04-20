@@ -1,35 +1,81 @@
-import { act, renderHook } from '@testing-library/react';
+import { type RenderHookResult, act, renderHook } from '@testing-library/react';
 import { useIdleness } from '../src/hooks/useIdleness';
 
-jest.useFakeTimers();
 describe('useIdleness', () => {
+    let hook: RenderHookResult<ReturnType<typeof useIdleness>, unknown>;
+    const events = ['mousemove', 'keydown', 'wheel', 'touchstart'];
+
     beforeEach(() => {
         jest.useFakeTimers();
+        hook = renderHook(() => useIdleness({ timeout: 3000 }));
     });
-    it('debe volverse inactivo después del tiempo configurado', () => {
-        const { result } = renderHook(() => useIdleness({ timeout: 3000 }));
-        expect(result.current).toBe(false);
 
+    afterEach(() => {
+        jest.clearAllTimers();
+        events.forEach((event) => {
+            window.removeEventListener(event, jest.fn());
+        });
+    });
+
+    it('should start as not idle', () => {
+        expect(hook.result.current.isIdle).toBe(false);
+    });
+
+    it('should become idle after timeout', () => {
         act(() => {
             jest.advanceTimersByTime(3000);
-            jest.runAllTimers();
         });
-        expect(result.current).toBe(true);
+        expect(hook.result.current.isIdle).toBe(true);
     });
 
-    it('debe resetear a activo si ocurre un evento antes de inactividad', () => {
-        const { result } = renderHook(() => useIdleness({ timeout: 3000 }));
-        expect(result.current).toBe(false);
+    it('should reset idle timer on user activity', () => {
+        act(() => {
+            jest.advanceTimersByTime(2000);
+        });
+        expect(hook.result.current.isIdle).toBe(false);
+
+        act(() => {
+            window.dispatchEvent(new Event('mousemove'));
+        });
 
         act(() => {
             jest.advanceTimersByTime(2000);
-            window.dispatchEvent(new Event('mousemove')); // Resetea la inactividad
         });
-        expect(result.current).toBe(false);
+        expect(hook.result.current.isIdle).toBe(false);
+    });
+
+    it('should handle start/stop monitoring', () => {
+        act(() => {
+            hook.result.current.stop();
+        });
+
+        act(() => {
+            jest.advanceTimersByTime(4000);
+        });
+        expect(hook.result.current.isIdle).toBe(false);
+
+        act(() => {
+            hook.result.current.start();
+        });
 
         act(() => {
             jest.advanceTimersByTime(3000);
         });
-        expect(result.current).toBe(true);
+        expect(hook.result.current.isIdle).toBe(true);
+    });
+
+    it('should call onIdleChange callback', () => {
+        const onIdleChange = jest.fn();
+        const hookWithCallback = renderHook(() => useIdleness({ timeout: 3000, onIdleChange }));
+
+        act(() => {
+            jest.advanceTimersByTime(3000);
+        });
+        expect(onIdleChange).toHaveBeenCalledWith(true);
+
+        act(() => {
+            window.dispatchEvent(new Event('mousemove'));
+        });
+        expect(onIdleChange).toHaveBeenCalledWith(false);
     });
 });
