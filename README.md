@@ -1,20 +1,22 @@
-# React Custom Hooks Library
+# Qazuor React Custom Hooks
 
 <div align="center">
-  <img src="logo.webp" alt="React Custom Hooks Library Logo" width="200" />
+  <img src="logo.webp" alt="React Custom Hooks Library Logo" width="150" />
 </div>
 
-[![npm version](https://img.shields.io/npm/v/qazuor-react-hooks.svg)](https://www.npmjs.com/package/qazuor-react-hooks)
-[![npm downloads](https://img.shields.io/npm/dm/qazuor-react-hooks.svg)](https://www.npmjs.com/package/qazuor-react-hooks)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript](https://img.shields.io/badge/TypeScript-4.9+-blue.svg)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-18.2+-blue.svg)](https://reactjs.org/)
+<div align="center" style="margin-top:15px">
+  [![npm version](https://img.shields.io/npm/v/qazuor-react-hooks.svg)](https://www.npmjs.com/package/qazuor-react-hooks)
+  [![npm downloads](https://img.shields.io/npm/dm/qazuor-react-hooks.svg)](https://www.npmjs.com/package/qazuor-react-hooks)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-4.9+-blue.svg)](https://www.typescriptlang.org/)
+  [![React](https://img.shields.io/badge/React-18.2+-blue.svg)](https://reactjs.org/)
+</div>
 
 A collection of high-quality, fully tested React hooks for common use cases. Written in TypeScript with comprehensive documentation and examples.
 
 ## Table of Contents
 
-- [React Custom Hooks Library](#react-custom-hooks-library)
+- [Qazuor React Custom Hooks](#qazuor-react-custom-hooks)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
   - [Installation](#installation)
