@@ -4,8 +4,8 @@
   <img src="logo.webp" alt="React Custom Hooks Library Logo" width="150" />
 
   <div style="margin-top: 25px; margin-bottom: 25px">
-    <a href="https://www.npmjs.com/package/qazuor-react-hooks"><img src="https://img.shields.io/npm/v/qazuor-react-hooks.svg" alt="npm version" /></a>
-    <a href="https://www.npmjs.com/package/qazuor-react-hooks"><img src="https://img.shields.io/npm/dm/qazuor-react-hooks.svg" alt="npm downloads" /></a>
+    <a href="https://www.npmjs.com/package/@qazuor/react-hooks"><img src="https://img.shields.io/npm/v/@qazuor/react-hooks.svg" alt="npm version" /></a>
+    <a href="https://www.npmjs.com/package/@qazuor/react-hooks"><img src="https://img.shields.io/npm/dm/@qazuor/react-hooks.svg" alt="npm downloads" /></a>
     <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
     <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-4.9+-blue.svg" alt="TypeScript" /></a>
     <a href="https://reactjs.org/"><img src="https://img.shields.io/badge/React-18.2+-blue.svg" alt="React" /></a>
@@ -66,13 +66,13 @@ A collection of high-quality, fully tested React hooks for common use cases. Wri
 
 ```bash
 # Using npm
-npm install qazuor-react-hooks
+npm install @qazuor/react-hooks
 
 # Using yarn
-yarn add qazuor-react-hooks
+yarn add @qazuor/react-hooks
 
 # Using pnpm
-pnpm add qazuor-react-hooks
+pnpm add @qazuor/react-hooks
 ```
 
 ## Available Hooks
@@ -83,7 +83,7 @@ pnpm add qazuor-react-hooks
 Manages a boolean state with convenient methods.
 
 ```tsx
-import { useBoolean } from 'qazuor-react-hooks';
+import { useBoolean } from '@qazuor/react-hooks';
 
 function Modal() {
     const { value: isOpen, setTrue: open, setFalse: close } = useBoolean(false);
@@ -106,7 +106,7 @@ function Modal() {
 Manages a toggleable boolean state with persistence options.
 
 ```tsx
-import { useToggle } from 'qazuor-react-hooks';
+import { useToggle } from '@qazuor/react-hooks';
 
 function ThemeToggle() {
     const { value: isDark, toggle } = useToggle({
@@ -127,7 +127,7 @@ function ThemeToggle() {
 Implements a FIFO queue with state management.
 
 ```tsx
-import { useQueue } from 'qazuor-react-hooks';
+import { useQueue } from '@qazuor/react-hooks';
 
 function TaskQueue() {
     const { enqueue, dequeue, peek, size, isEmpty } = useQueue<string>();
@@ -153,7 +153,7 @@ function TaskQueue() {
 Execute a callback after a delay with control methods.
 
 ```tsx
-import { useTimeout } from 'qazuor-react-hooks';
+import { useTimeout } from '@qazuor/react-hooks';
 
 function AutoDismiss() {
     const [visible, setVisible] = useState(true);
@@ -175,7 +175,7 @@ function AutoDismiss() {
 Execute a callback at regular intervals with pause/resume functionality.
 
 ```tsx
-import { useInterval } from 'qazuor-react-hooks';
+import { useInterval } from '@qazuor/react-hooks';
 
 function Counter() {
     const [count, setCount] = useState(0);
@@ -199,7 +199,7 @@ function Counter() {
 Enhanced interval with random delay options and more control.
 
 ```tsx
-import { useHandledInterval } from 'qazuor-react-hooks';
+import { useHandledInterval } from '@qazuor/react-hooks';
 
 function RandomTimer() {
     const [count, setCount] = useState(0);
@@ -226,7 +226,7 @@ function RandomTimer() {
 Debounce a value with configurable delay.
 
 ```tsx
-import { useDebounce } from 'qazuor-react-hooks';
+import { useDebounce } from '@qazuor/react-hooks';
 
 function SearchInput() {
     const [value, setValue] = useState('');
@@ -253,7 +253,7 @@ function SearchInput() {
 Persist state in localStorage with type safety.
 
 ```tsx
-import { useLocalStorage } from 'qazuor-react-hooks';
+import { useLocalStorage } from '@qazuor/react-hooks';
 
 function UserPreferences() {
     const [preferences, setPreferences] = useLocalStorage('user-prefs', {
@@ -286,7 +286,7 @@ function UserPreferences() {
 Persist state in sessionStorage.
 
 ```tsx
-import { useSessionStorage } from 'qazuor-react-hooks';
+import { useSessionStorage } from '@qazuor/react-hooks';
 
 function FormWithAutosave() {
     const [formData, setFormData] = useSessionStorage('form-draft', {
@@ -315,7 +315,7 @@ function FormWithAutosave() {
 Copy text to clipboard with status feedback.
 
 ```tsx
-import { useCopyToClipboard } from 'qazuor-react-hooks';
+import { useCopyToClipboard } from '@qazuor/react-hooks';
 
 function ShareButton() {
     const { copy, copied, error } = useCopyToClipboard();
@@ -337,7 +337,7 @@ function ShareButton() {
 React to media query changes.
 
 ```tsx
-import { useMediaQuery } from 'qazuor-react-hooks';
+import { useMediaQuery } from '@qazuor/react-hooks';
 
 function ResponsiveLayout() {
     const isMobile = useMediaQuery('(max-width: 768px)');
@@ -356,7 +356,7 @@ function ResponsiveLayout() {
 Track network connectivity status.
 
 ```tsx
-import { useNetworkState } from 'qazuor-react-hooks';
+import { useNetworkState } from '@qazuor/react-hooks';
 
 function NetworkIndicator() {
     const { online, type, rtt } = useNetworkState();
@@ -379,7 +379,7 @@ function NetworkIndicator() {
 Track document visibility state.
 
 ```tsx
-import { useVisibilityChange } from 'qazuor-react-hooks';
+import { useVisibilityChange } from '@qazuor/react-hooks';
 
 function VideoPlayer() {
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -401,7 +401,7 @@ function VideoPlayer() {
 Track window width with debouncing.
 
 ```tsx
-import { useWindowWidth } from 'qazuor-react-hooks';
+import { useWindowWidth } from '@qazuor/react-hooks';
 
 function ResponsiveComponent() {
     const { width } = useWindowWidth({
@@ -430,7 +430,7 @@ function ResponsiveComponent() {
 Detect clicks outside an element.
 
 ```tsx
-import { useClickOutside } from 'qazuor-react-hooks';
+import { useClickOutside } from '@qazuor/react-hooks';
 
 function Dropdown() {
     const [isOpen, setIsOpen] = useState(false);
@@ -458,7 +458,7 @@ function Dropdown() {
 Track user idle state.
 
 ```tsx
-import { useIdleness } from 'qazuor-react-hooks';
+import { useIdleness } from '@qazuor/react-hooks';
 
 function IdleMonitor() {
     const { isIdle, reset } = useIdleness({
@@ -485,7 +485,7 @@ function IdleMonitor() {
 Detect when user attempts to leave page.
 
 ```tsx
-import { usePageLeave } from 'qazuor-react-hooks';
+import { usePageLeave } from '@qazuor/react-hooks';
 
 function ExitIntent() {
     const { hasLeft } = usePageLeave({
@@ -506,7 +506,7 @@ function ExitIntent() {
 Prevent body scrolling.
 
 ```tsx
-import { useLockBodyScroll } from 'qazuor-react-hooks';
+import { useLockBodyScroll } from '@qazuor/react-hooks';
 
 function Modal({ isOpen }: { isOpen: boolean }) {
     const { isLocked, lock, unlock } = useLockBodyScroll({
@@ -535,7 +535,7 @@ function Modal({ isOpen }: { isOpen: boolean }) {
 Measure DOM elements.
 
 ```tsx
-import { useMeasure } from 'qazuor-react-hooks';
+import { useMeasure } from '@qazuor/react-hooks';
 
 function ResizableBox() {
     const { ref, size } = useMeasure();
@@ -564,7 +564,7 @@ function ResizableBox() {
 Debug values with console logging.
 
 ```tsx
-import { useLogger } from 'qazuor-react-hooks';
+import { useLogger } from '@qazuor/react-hooks';
 
 function DebugComponent() {
     const [count, setCount] = useState(0);
